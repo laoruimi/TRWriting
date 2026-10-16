@@ -49,6 +49,7 @@ const TRAppearance = (() => {
     dialog.scrollTop = 0;
   }
   selectTab('appearance');
+  $('editChapterGoal').onclick = () => {selectTab('goals');dialog.showModal();$('chapterGoal').focus();$('chapterGoal').select();};
   shortcut.onclick = () => {selectTab('appearance');dialog.showModal();};
   $('fontButton').addEventListener('click', () => selectTab('type'));
   $('settings').addEventListener('click', () => selectTab('appearance'));

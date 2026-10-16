@@ -8,7 +8,12 @@
   <button id="bookName" class="book-name" title="修改作品名称"><span class="book-icon">▤</span><span id="bookLabel">未命名的长篇</span><span class="muted">⌄</span></button>
   <div class="chapter-heading">章节目录 <button id="addChapter" title="新增章节" aria-label="新增章节">＋</button></div>
   <nav id="chapterList" aria-label="章节目录"></nav>
-  <div class="sidebar-bottom"><div class="local-note"><span class="status-dot"></span> 本地创作，安心落笔</div><p>文字仅保存在当前设备上<br>记得定期导出你的故事。</p><button id="backup" class="subtle-button">↗ 导出整本备份</button><button id="restore" class="subtle-button">↙ 导入作品备份</button></div>
+  <div class="sidebar-bottom"><section id="goalPanel" class="goal-panel sidebar-goal" hidden aria-label="本章码字目标">
+    <div class="goal-card-heading"><span><i class="goal-spark">✦</i> 本章目标</span><button id="editChapterGoal" type="button" title="调整本章码字目标" aria-label="调整本章码字目标">调整 ↗</button></div>
+    <div class="goal-card-count"><strong id="goalCurrent">0</strong><span> / <span id="goalTarget">3,000</span> 字</span></div>
+    <div class="goal-track" role="progressbar" aria-label="本章目标进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="goalFill"></i></div>
+    <div class="goal-card-bottom"><span id="goalText">落笔，离故事更近一步</span><span id="goalPercent">0%</span></div>
+  </section><button id="backup" class="subtle-button">↗ 导出整本备份</button><button id="restore" class="subtle-button">↙ 导入作品备份</button></div>
 </aside>
 <main>
   <header class="topbar"><div class="breadcrumb"><span>创作空间</span><span>/</span><strong id="breadcrumbTitle">第一章</strong></div><div class="top-actions"><span id="saveState"><i class="status-dot"></i> 已保存到本地</span><button id="exportText" class="plain-button">导出文本 ↗</button><button id="settings" class="icon-button" title="写作设置" aria-label="写作设置">⚙</button></div></header>
@@ -18,7 +23,6 @@
 <div class="paper-content" id="paperContent">
     <div class="page-heading"><div class="eyebrow"><span></span> A SPACE FOR YOUR STORY</div><input id="chapterTitle" aria-label="章节标题" placeholder="为这一章取个名字"><div class="chapter-meta"><span id="chapterOrdinal">CHAPTER 01</span><span>每一次落笔，都离故事更近一点。</span></div></div>
 
-    <div id="goalPanel" class="goal-panel" hidden><div><span id="goalText"></span><span id="goalPercent"></span></div><div class="goal-track"><i id="goalFill"></i></div></div>
     <div id="editorFrame" class="editor-frame"><pre id="highlight" aria-hidden="true"></pre><textarea id="editor" aria-label="小说正文" spellcheck="false" placeholder="故事，从这里开始。&#10;&#10;写下一句话，让灵感有回响……"></textarea><div id="caretMirror" aria-hidden="true"></div><div id="baselineMirror" aria-hidden="true"></div><div id="baselineLayer" aria-hidden="true"></div></div>
     <div class="page-footer"><span>— 把脑海里的世界，写成真实 —</span></div>
   </div></section></div></div>

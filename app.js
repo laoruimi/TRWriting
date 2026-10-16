@@ -180,10 +180,20 @@ addEventListener('pagehide',()=>{chapter().text=editor.value;save();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){sound.stop();resetCombo();chapter().text=editor.value;save();}});
 let baselineFrame=0,baselinePositions=[];
 function chapterGoal(){const value=chapter().goal;return value===undefined?3000:Math.max(0,Math.min(1000000,Math.round(Number(value)||0)));}
+let goalView=null,goalAnimation=null;
 function updateGoal(){
   const target=chapterGoal(),words=countWords(editor.value),percent=target?Math.min(100,Math.floor(words/target*100)):0;
-  $('goalPanel').hidden=!target;$('goalText').textContent=words>=target?'本章目标已达成 · '+words.toLocaleString()+' / '+target.toLocaleString()+' 字':'本章目标 · '+words.toLocaleString()+' / '+target.toLocaleString()+' 字';
-  $('goalPercent').textContent=percent+'%';$('goalFill').style.width=percent+'%';$('goalPanel').classList.toggle('complete',target>0&&words>=target);
+  const panel=$('goalPanel'),complete=target>0&&words>=target;
+  panel.hidden=!target;$('goalCurrent').textContent=words.toLocaleString();$('goalTarget').textContent=target.toLocaleString();
+  $('goalText').textContent=complete?'本章目标已达成':words?'还差 '+(target-words).toLocaleString()+' 字':'落笔，离故事更近一步';
+  $('goalPercent').textContent=percent+'%';$('goalFill').style.width=percent+'%';panel.classList.toggle('complete',complete);
+  panel.querySelector('[role="progressbar"]').setAttribute('aria-valuenow',percent);
+  if(goalView&&goalView.chapter===state.active&&goalView.target===target&&words>goalView.words&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    goalAnimation?.cancel();
+    const achieved=complete&&!goalView.complete;
+    goalAnimation=(achieved?panel:$('goalCurrent')).animate(achieved?[{transform:'translateY(0)'},{transform:'translateY(-4px)',boxShadow:'0 0 24px #7fcca536'},{transform:'translateY(0)'}]:[{transform:'translateY(2px)',opacity:.65},{transform:'translateY(0)',opacity:1}],{duration:achieved?650:220,easing:'ease-out'});
+  }
+  goalView={chapter:state.active,target,words,complete};
 }
 function scheduleBaselines(){if(!baselineFrame)baselineFrame=requestAnimationFrame(renderBaselines);}
 function positionBaselines(){
