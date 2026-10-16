@@ -1,0 +1,47 @@
+/* Surface colors are derived independently, so mixed light/dark themes work too. */
+:root { --bg:#181b22; --paper:#20252e; --ink:#e6e6df; --muted:#a5acb8; --line:#343840; --surface:#24272e; --paper-ink:#e6e6df; --paper-muted:#a5acb8; --paper-line:#3a3f48; --paper-raised:#2a2f38; }
+body { color:var(--ink); }
+button:hover { background:var(--surface); }
+.sidebar { background:var(--bg); border-color:var(--line); }
+.sidebar-bottom,.toolbar-divider,.setting-row { border-color:var(--line); }
+.workspace-label span,.chapter-item.active { background:var(--surface); }
+.chapter-item.active { color:var(--ink); box-shadow:none; }
+.brand small,.workspace-label,.book-icon,.chapter-heading,.chapter-item,.sidebar-bottom p,.subtle-button,.local-note,.breadcrumb,.top-actions #saveState,.toolbar-left .icon-button,#fontSizeValue,.statusbar,.keyboard-hint,.status-separator,.mode-badge { color:var(--muted); }
+.breadcrumb strong { color:var(--ink); }
+.writing-stage { border-color:var(--paper-line); }
+#chapterTitle,#highlight { color:var(--paper-ink); }
+.page-heading .eyebrow,.chapter-meta,.page-footer { color:var(--paper-muted); }
+#editor { caret-color:var(--paper-ink); }
+#editor::placeholder { color:var(--paper-muted); -webkit-text-fill-color:var(--paper-muted); opacity:.65; }
+#editor::-webkit-scrollbar-thumb { background:var(--paper-line); }
+.combo-card { background:var(--paper-raised); border-color:var(--paper-line); }
+.combo-label,.combo-unit,#comboHint { color:var(--paper-muted); }
+.combo-track { background:var(--paper-line); }
+dialog { background:var(--bg); color:var(--ink); border-color:var(--line); max-height:86vh; overflow-y:auto; scrollbar-width:thin; }
+dialog::backdrop { background:#0008; }
+.setting-row p,.font-info,.settings-note,#sizeLabel { color:var(--muted); }
+select { background:var(--surface); color:var(--ink); border-color:var(--line); }
+.syntax-legend { background:var(--paper); }
+.effect-button { color:#d3ae7a; background:#99825719; border-color:#99825750; }
+.effect-button[aria-pressed=false] { background:var(--surface); color:var(--muted); border-color:var(--line); }
+.syntax-book { color:#987143; }
+.syntax-paren { color:#7b7d4b; }
+.syntax-brace { color:#aa688b; }
+[data-paper=dark] .syntax-dialogue { color:#8fc8ad; }
+[data-paper=dark] .syntax-single { color:#e4be7c; }
+[data-paper=dark] .syntax-bracket { color:#8ab9e7; }
+[data-paper=dark] .syntax-system { color:#c4a1e9; }
+[data-paper=dark] .syntax-book { color:#e8bf86; }
+[data-paper=dark] .syntax-paren { color:#becd8d; }
+[data-paper=dark] .syntax-brace { color:#e4a1c5; }
+[data-paper=dark] .syntax-colon { color:#dca78c; }
+[data-paper=dark] .syntax-symbol { color:#c6a28e; }
+[data-paper=dark] #comboCount,[data-paper=dark] #comboRating { color:#e3ba80; }
+[data-shell=dark] { color-scheme:dark; }
+[data-shell=light] { color-scheme:light; }
+.color-settings { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:0 0 20px; }
+.color-settings label { display:grid; grid-template-columns:1fr auto; gap:9px; align-items:center; font-size:11px; }
+.color-settings span { font-family:monospace; font-size:10px; color:var(--muted); }
+.color-settings input[type=color] { grid-column:1 / -1; width:100%; height:35px; padding:3px; cursor:pointer; border:1px solid var(--line); border-radius:6px; background:var(--surface); }
+#bookNameInput { background:var(--surface); color:var(--ink); border:1px solid var(--line); padding:12px; width:100%; border-radius:6px; }
+.dialog-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:20px; }

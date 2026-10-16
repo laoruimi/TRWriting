@@ -1,0 +1,16 @@
+Human voice recordings used in TRWriting 1.3:
+
+Announcer Voice Pack (General Phrases) and (Fighting) - Female
+Performed by Aimee Smith (https://www.aimeesmithva.com/), published by WinterWalrus.
+https://opengameart.org/content/announcer-voice-pack-general-phrases-female
+https://opengameart.org/content/announcer-voice-pack-fighting-female
+License: CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+Used: go, congratulations, level_up, new_high_score, perfect. Unmodified.
+
+"Female announcer voices", by Vircon32 (Carra).
+https://opengameart.org/content/female-announcer-voices
+Published at OpenGameArt under license CC-BY 4.0.
+https://creativecommons.org/licenses/by/4.0/
+Used: SoundComboNice and SoundComboGreat. Unmodified (original includes pitch/echo processing).
+
+Display tiers use these encouraging phrases and do not all have a matching spoken tier name.

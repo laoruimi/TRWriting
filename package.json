@@ -1,0 +1,69 @@
+{
+  "name": "trwriting",
+  "productName": "TRWriting",
+  "version": "2.0.0",
+  "description": "离线小说创作工具 · 高亮、爆震与灵感连击",
+  "author": "TRWriting",
+  "private": true,
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "postinstall": "node node_modules/electron/install.js",
+    "start": "electron .",
+    "test": "node --test tests/core.test.cjs tests/studio.test.cjs",
+    "test:audio": "electron tests/audio.integration.cjs",
+    "build": "electron-builder --win --x64",
+    "build:dir": "electron-builder --win --x64 --dir"
+  },
+  "devDependencies": {
+    "electron": "44.8.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "com.trwriting.desktop",
+    "productName": "TRWriting",
+    "asar": true,
+    "electronDist": "node_modules/electron/dist",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "index.html",
+      "app.js",
+      "syntax.js",
+      "theme.js",
+      "style.css",
+      "theme-overrides.css",
+      "desktop/**/*",
+      "assets/**/*",
+      "rhythm.js",
+      "rhythm.css",
+      "studio.js",
+      "studio-core.js",
+      "studio.css"
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "signAndEditExecutable": true
+    },
+    "nsis": {
+      "artifactName": "TRWriting-${version}-${arch}-nsis.${ext}",
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "TRWriting",
+      "deleteAppDataOnUninstall": false
+    },
+    "portable": {
+      "artifactName": "TRWriting-${version}-${arch}-portable.${ext}"
+    }
+  },
+  "dependencies": {
+    "fflate": "^0.8.3",
+    "mammoth": "^1.13.0"
+  }
+}

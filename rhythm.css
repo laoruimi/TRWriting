@@ -1,0 +1,35 @@
+/* Keep the page layout fixed; scale its border, padding and contents as one sheet. */
+.paper-viewport{flex:1;min-height:0;overflow:scroll;scrollbar-width:thin;padding:8px 36px 0;overscroll-behavior:contain}
+.paper-layout{position:relative;margin:0 auto}
+.paper-layout>.writing-stage{position:absolute;left:0;top:0;margin:0;max-width:none;flex:none;transform:scale(var(--page-zoom,1));transform-origin:top left;border-bottom:1px solid var(--paper-line)}
+.paper-content{display:flex;flex-direction:column;flex:1;min-height:0}
+@media(max-width:1000px){.paper-viewport{padding-left:22px;padding-right:22px}}
+@media(max-width:720px){.paper-viewport{padding:0 10px}}
+.combo-card{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0;padding:0;right:25px;top:28px;width:150px;pointer-events:none;--neon:#55eaff;text-align:right;filter:drop-shadow(0 0 8px color-mix(in srgb,var(--neon) 35%,transparent))}
+.combo-card[hidden]{display:none!important}
+.combo-label{justify-content:flex-end;color:var(--neon)!important;font-size:8px;letter-spacing:2px}.live-spark{color:var(--neon)}
+.combo-number{justify-content:flex-end;gap:9px}.combo-card #comboCount{font-family:Impact,'Arial Black',sans-serif;font-style:italic;font-size:57px;color:#f1fcff!important;text-shadow:2px 0 #ff4bd1,-2px 0 var(--neon),0 0 18px var(--neon);letter-spacing:1px}
+.combo-unit{color:var(--neon)!important;font-size:9px}.combo-bottom{display:block}.combo-card #comboRating{display:block;font-size:18px;letter-spacing:2px;font-style:italic;color:var(--neon)!important;text-shadow:0 0 12px var(--neon)}
+#comboHint{display:block;font-size:8px;margin-top:5px;opacity:.75}.combo-track{background:transparent!important;margin-left:30px}.combo-track i{background:var(--neon);box-shadow:0 0 8px var(--neon);margin-left:auto}
+.combo-card.hit{animation:neon-hit .18s ease-out}@keyframes neon-hit{0%{transform:scale(1.12) skewX(-4deg);filter:brightness(1.7)}100%{transform:scale(1)}}
+.effects-active #highlight{text-shadow:0 0 6px #51dfff40,1px 0 1px #ff4bd126}
+.effects-active .page-heading{padding-right:155px}.page-heading{padding-right:0}
+#zoomReset{font-size:10px;color:var(--muted);white-space:nowrap}
+.sound-controls{display:flex;align-items:center;gap:10px}.sound-controls input[type=range]{width:100px}
+@media(max-width:720px){.combo-card{width:95px;right:12px;top:20px}.combo-card #comboCount{font-size:35px}.combo-card #comboRating{font-size:11px}.combo-label{font-size:6px;letter-spacing:.5px}.effects-active .page-heading{padding-right:80px}}
+
+.music-settings{border:1px solid var(--line);border-radius:8px;padding:0 14px 12px;margin-top:12px}
+.music-settings .setting-row:first-child{border-top:0}
+.music-settings input[type=number]{width:90px;padding:7px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:5px}
+.audio-credits{font-size:9px;line-height:1.8;color:var(--muted)}
+#audioCreditsDialog .settings-note{overflow-wrap:anywhere}
+
+.goal-panel{margin:0 0 18px;color:var(--paper-muted);font-size:10px}
+.goal-panel[hidden]{display:none}.goal-panel>div:first-child{display:flex;justify-content:space-between;gap:12px}
+.goal-track{height:3px;background:var(--paper-line);margin-top:8px;border-radius:3px;overflow:hidden}
+.goal-track i{display:block;height:100%;background:#b59a70;transition:width .2s}.goal-panel.complete .goal-track i{background:#76bea3}
+.goal-settings input[type=number]{width:105px;padding:7px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:5px}
+#baselineMirror{position:absolute;left:0;top:0;visibility:hidden;pointer-events:none;height:auto;font-family:var(--editor-font);font-size:var(--editor-size);font-weight:400;line-height:2.05;letter-spacing:.5px;tab-size:4;padding:0 7px 80px 0;margin:0;border:0;white-space:pre-wrap;overflow-wrap:break-word;word-break:normal}
+#baselineLayer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:3}
+.word-baseline{position:absolute;left:0;right:8px;border-top:1px dashed color-mix(in srgb,var(--paper-muted) 35%,transparent)}
+.word-baseline span{position:absolute;right:0;top:1px;font-family:'Segoe UI','Microsoft YaHei',sans-serif;font-size:9px;line-height:12px;color:var(--paper-muted);background:var(--paper);padding:0 3px}

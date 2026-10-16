@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name=".build-cache">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/.build-cache/sports.zip!/" />
+      <root url="jar://$PROJECT_DIR$/.build-cache/voiceover-pack.zip!/" />
+      <root url="jar://$PROJECT_DIR$/.build-cache/female_announcer_voices_-_all_voices.zip!/" />
+      <root url="jar://$PROJECT_DIR$/.build-cache/fighting.zip!/" />
+      <root url="jar://$PROJECT_DIR$/.build-cache/racing.zip!/" />
+      <root url="jar://$PROJECT_DIR$/.build-cache/General.zip!/" />
+      <root url="jar://$PROJECT_DIR$/.build-cache/General2.zip!/" />
+      <root url="jar://$PROJECT_DIR$/.build-cache/electron-v44.8.0-win32-x64.zip!/" />
+      <root url="jar://$PROJECT_DIR$/.build-cache/voiceover-pack-fighter.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

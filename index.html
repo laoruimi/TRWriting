@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self'; font-src 'self' blob:; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TRWriting · 让灵感有回响</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="theme-overrides.css"><link rel="stylesheet" href="rhythm.css"><link rel="stylesheet" href="studio.css"></head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="#" aria-label="TRWriting 首页"><span class="brand-icon">tr<span>✦</span></span><span>TRWriting<small>你的故事，正在发生</small></span></a>
+  <div class="workspace-label">我的创作空间 <span>LOCAL</span></div>
+  <button id="bookName" class="book-name" title="修改作品名称"><span class="book-icon">▤</span><span id="bookLabel">未命名的长篇</span><span class="muted">⌄</span></button>
+  <div class="chapter-heading">章节目录 <button id="addChapter" title="新增章节" aria-label="新增章节">＋</button></div>
+  <nav id="chapterList" aria-label="章节目录"></nav>
+  <div class="sidebar-bottom"><div class="local-note"><span class="status-dot"></span> 本地创作，安心落笔</div><p>文字仅保存在当前设备上<br>记得定期导出你的故事。</p><button id="backup" class="subtle-button">↗ 导出整本备份</button><button id="restore" class="subtle-button">↙ 导入作品备份</button></div>
+</aside>
+<main>
+  <header class="topbar"><div class="breadcrumb"><span>创作空间</span><span>/</span><strong id="breadcrumbTitle">第一章</strong></div><div class="top-actions"><span id="saveState"><i class="status-dot"></i> 已保存到本地</span><button id="exportText" class="plain-button">导出文本 ↗</button><button id="settings" class="icon-button" title="写作设置" aria-label="写作设置">⚙</button></div></header>
+  <section class="writing-toolbar"><div class="toolbar-left"><span class="mode-badge">✎ 写作模式</span><span class="toolbar-divider"></span><button id="fontButton" class="plain-button">默认字体 ⌄</button><button id="decreaseFont" class="icon-button" aria-label="缩小字号">A−</button><span id="fontSizeValue">20</span><button id="increaseFont" class="icon-button" aria-label="增大字号">A＋</button></div><div class="toolbar-right"><button id="zoomReset" title="Ctrl＋鼠标滚轮缩放书页；点击恢复 100%">100%</button><button id="effectsToggle" class="effect-button" aria-pressed="true">ϟ 爆震已开启</button><button id="focusToggle" class="icon-button" title="专注模式（Esc 退出）" aria-label="切换专注模式">⛶</button></div></section></div></div>
+  <div class="paper-viewport" id="paperViewport"><div class="paper-layout" id="paperLayout"><section class="writing-stage">
+    <div class="combo-card" id="comboCard" hidden aria-live="off"><div class="combo-label"><span class="live-spark">✦</span> WRITING COMBO</div><div class="combo-number"><span id="comboCount">0</span><span class="combo-unit">连击</span></div><div class="combo-bottom"><span id="comboRating">READY</span><span id="comboHint">灵感，即将起飞</span></div><div class="combo-track"><i id="comboProgress"></i></div></div>
+<div class="paper-content" id="paperContent">
+    <div class="page-heading"><div class="eyebrow"><span></span> A SPACE FOR YOUR STORY</div><input id="chapterTitle" aria-label="章节标题" placeholder="为这一章取个名字"><div class="chapter-meta"><span id="chapterOrdinal">CHAPTER 01</span><span>每一次落笔，都离故事更近一点。</span></div></div>
+
+    <div id="goalPanel" class="goal-panel" hidden><div><span id="goalText"></span><span id="goalPercent"></span></div><div class="goal-track"><i id="goalFill"></i></div></div>
+    <div id="editorFrame" class="editor-frame"><pre id="highlight" aria-hidden="true"></pre><textarea id="editor" aria-label="小说正文" spellcheck="false" placeholder="故事，从这里开始。&#10;&#10;写下一句话，让灵感有回响……"></textarea><div id="caretMirror" aria-hidden="true"></div><div id="baselineMirror" aria-hidden="true"></div><div id="baselineLayer" aria-hidden="true"></div></div>
+    <div class="page-footer"><span>— 把脑海里的世界，写成真实 —</span></div>
+  </div></section>
+  <footer class="statusbar"><div><span class="status-dot"></span><span id="wordCount">0 字</span><span class="status-separator">/</span><span id="totalCount">全书 0 字</span></div><div><span id="cursorPosition">第 1 行，第 1 列</span><span class="status-separator">/</span><span>UTF-8</span><span class="keyboard-hint">Ctrl S 保存</span></div></footer>
+</main>
+<canvas id="particles" aria-hidden="true"></canvas><div id="toast" role="status"></div>
+<dialog id="settingsDialog"><form method="dialog"><div class="dialog-heading"><div><span class="eyebrow">MAKE IT YOURS</span><h2>你的写作手感</h2></div><button class="icon-button" aria-label="关闭设置">✕</button></div></form><section class="goal-settings" aria-label="码字目标与基线"><div class="setting-row"><label for="chapterGoal">本章码字目标</label><input id="chapterGoal" type="number" min="0" max="1000000" step="100" value="3000"></div><p class="settings-note">每章可单独设置，填 0 关闭。本章字数不含空格、换行，标点计入。</p><div class="setting-row"><label for="baselineEnabled">显示章节字数基线</label><input id="baselineEnabled" type="checkbox" checked></div><div class="setting-row"><label for="baselineStep">基线间隔（字）</label><input id="baselineStep" type="number" min="100" max="10000" step="100" value="500"></div><p class="settings-note">默认在 500、1000、1500… 字所在行下方显示标记线。基线不会写入正文或导出文本。</p></section><section class="theme-settings" aria-label="外观设置">
+  <div class="setting-row"><div><strong>外观与背景</strong><p>整个工作台和正文背景均可独立调色。</p></div><select id="themePreset" aria-label="主题预设"><option value="midnight">午夜墨蓝</option><option value="graphite">石墨深灰</option><option value="forest">深林夜色</option><option value="light">暖白纸张</option><option value="custom">自定义配色</option></select></div>
+  <div class="color-settings"><label for="backgroundColor">工作台背景 <span id="backgroundHex"></span><input id="backgroundColor" type="color" value="#181b22"></label><label for="paperColor">正文背景 <span id="paperHex"></span><input id="paperColor" type="color" value="#20252e"></label></div>
+</section><div class="setting-row"><div><strong>文字字体</strong><p>导入本机字体文件，打造熟悉的纸面。</p></div><button id="importFont" class="primary-button">选择字体文件</button></div><p id="fontInfo" class="font-info">支持 TTF / OTF / WOFF / WOFF2，字体仅在本地使用</p><div class="setting-row"><label for="fontFamily">当前字体</label><select id="fontFamily"><option value="serif">书卷 · 宋体</option><option value="sans">简洁 · 黑体</option><option value="mono">秩序 · 等宽</option></select></div><div class="setting-row"><label for="fontSize">正文字号 <span id="sizeLabel">20 px</span></label><input id="fontSize" type="range" min="16" max="32" value="20"></div><div class="setting-row"><label for="intensity">爆震强度</label><select id="intensity"><option value="0.5">轻盈</option><option value="1">标准</option><option value="1.7">强烈</option></select></div><div class="setting-row"><label for="soundEnabled">连击音效</label><input id="soundEnabled" type="checkbox" checked></div><div class="setting-row"><label for="soundVolume">音量 <span id="volumeLabel">35%</span></label><div class="sound-controls"><input id="soundVolume" type="range" min="0" max="100" value="35"><button id="soundPreview" class="plain-button">试听连击</button></div></div><div class="setting-row"><label for="voiceEnabled">真人评价短句</label><input id="voiceEnabled" type="checkbox" checked></div>
+<section class="music-settings" aria-label="音乐爆震">
+<div class="setting-row"><label for="soundMode">爆震声音模式</label><select id="soundMode"><option value="synth">燃动电子音</option><option value="music">音乐切片</option></select></div>
+<div class="setting-row"><div><strong>音乐爆震</strong><p>导入歌曲，让每次落笔触发一段音乐。</p></div><button id="importMusic" class="primary-button">导入音乐</button></div>
+<p id="musicInfo" class="font-info" role="status">尚未导入音乐 · 支持 MP3 / WAV / OGG / M4A / FLAC</p>
+<div class="setting-row"><label for="musicBpm">歌曲 BPM</label><input id="musicBpm" type="number" min="40" max="300" step="1" value="120"></div>
+<div class="setting-row"><label for="musicOffset">起拍位置（秒）</label><input id="musicOffset" type="number" min="0" max="600" step="0.01" value="0"></div>
+<p class="settings-note">先输入歌曲 BPM，再将起拍位置对准第一拍，跳过片头静音。持续输入时，切片沿原曲连续衔接；高连击使用更细拍点。快速输入不截断歌曲，停笔后短暂收尾。音乐模式不播放评价播报。音乐和设置保存在本机。</p>
+<button id="removeMusic" class="plain-button" disabled>移除音乐</button>
+</section>
+<p class="audio-credits">真人录音：Aimee Smith、Vircon32（Carra）· CC BY 4.0<br>评价使用 Nice、Great、Perfect 等鼓励短句。<button id="audioCredits" class="plain-button">音频署名与许可</button></p>
+<div class="setting-row"><label for="highlightToggle">符号与对白高亮</label><input id="highlightToggle" type="checkbox" checked></div><div class="syntax-legend"><span class="syntax-dialogue">“双引号对白”</span><span class="syntax-single">‘单引号’</span><span class="syntax-bracket">[方括号]</span><span class="syntax-system">【系统提示】</span><span class="syntax-book">《书名》〈篇名〉</span><span class="syntax-dialogue">「对白」『引文』</span><span class="syntax-paren">（圆括号）</span><span class="syntax-brace">{花括号}</span><span class="syntax-bracket">〔括注〕［全角］</span><span class="syntax-system">〖标记〗</span><span class="syntax-colon">冒号：后续文本</span></div><p class="settings-note">连击在停笔 5 秒后结算。12 段评价：10 / 30 / 60 / 100 / 150 / 200 / 300 / 450 / 650 / 900 / 1200 字升级。<br>中文输入法在确认文字后触发效果；删除时文字会碎裂消散。</p><button id="deleteChapter" class="danger-button">删除当前章节</button></dialog>
+<dialog id="bookDialog"><form id="bookForm"><h2>作品名称</h2><input id="bookNameInput" aria-label="作品名称" maxlength="100" required><div class="dialog-actions"><button type="button" id="cancelBook" class="plain-button">取消</button><button class="primary-button" type="submit">保存名称</button></div></form></dialog>
+<input hidden type="file" id="musicFile" accept=".mp3,.wav,.ogg,.m4a,.aac,.flac,audio/*"><input hidden type="file" id="fontFile" accept=".ttf,.otf,.woff,.woff2"><input hidden type="file" id="backupFile" accept=".json,application/json">
+<dialog id="audioCreditsDialog"><div class="dialog-heading"><h2>音频署名与许可</h2><button id="closeAudioCredits" class="icon-button" aria-label="关闭音频许可">×</button></div><p class="settings-note">Announcer Voice Pack (General Phrases) / (Fighting) - Female<br>真人演出：Aimee Smith · 发布：WinterWalrus<br>www.aimeesmithva.com<br>opengameart.org/content/announcer-voice-pack-general-phrases-female<br>opengameart.org/content/announcer-voice-pack-fighting-female<br>使用 go、congratulations、level_up、new_high_score、perfect，录音未修改。</p><p class="settings-note">“Female announcer voices”, by Vircon32 (Carra).<br>opengameart.org/content/female-announcer-voices<br>使用 SoundComboNice、SoundComboGreat，文件未修改；原录音含音高与回声效果。</p><p class="settings-note">以上均为 CC BY 4.0：creativecommons.org/licenses/by/4.0/<br>完整许可随应用附于 assets/voice。旧版合成播报已停用。</p></dialog>
+<script src="syntax.js"></script>
+<script src="theme.js"></script>
+<script src="rhythm.js"></script>
+<script src="app.js"></script>
+<script src="assets/vendor/fflate.js"></script>
+<script src="assets/vendor/mammoth.js"></script>
+<script src="assets/sensitive-words.js"></script>
+<script src="studio-core.js"></script>
+<script src="studio.js"></script>
+</body></html>
