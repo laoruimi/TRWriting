@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self'; font-src 'self' blob:; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TRWriting · 让灵感有回响</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="theme-overrides.css"><link rel="stylesheet" href="rhythm.css"><link rel="stylesheet" href="studio.css"></head>
+<head><meta charset="UTF-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self'; font-src 'self' blob:; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TRWriting · 让灵感有回响</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="theme-overrides.css"><link rel="stylesheet" href="rhythm.css"><link rel="stylesheet" href="studio.css"><link rel="stylesheet" href="workspace-ui.css"><link rel="stylesheet" href="appearance.css"></head>
 <body>
 <aside class="sidebar">
   <a class="brand" href="#" aria-label="TRWriting 首页"><span class="brand-icon">tr<span>✦</span></span><span>TRWriting<small>你的故事，正在发生</small></span></a>
@@ -12,7 +12,7 @@
 </aside>
 <main>
   <header class="topbar"><div class="breadcrumb"><span>创作空间</span><span>/</span><strong id="breadcrumbTitle">第一章</strong></div><div class="top-actions"><span id="saveState"><i class="status-dot"></i> 已保存到本地</span><button id="exportText" class="plain-button">导出文本 ↗</button><button id="settings" class="icon-button" title="写作设置" aria-label="写作设置">⚙</button></div></header>
-  <section class="writing-toolbar"><div class="toolbar-left"><span class="mode-badge">✎ 写作模式</span><span class="toolbar-divider"></span><button id="fontButton" class="plain-button">默认字体 ⌄</button><button id="decreaseFont" class="icon-button" aria-label="缩小字号">A−</button><span id="fontSizeValue">20</span><button id="increaseFont" class="icon-button" aria-label="增大字号">A＋</button></div><div class="toolbar-right"><button id="zoomReset" title="Ctrl＋鼠标滚轮缩放书页；点击恢复 100%">100%</button><button id="effectsToggle" class="effect-button" aria-pressed="true">ϟ 爆震已开启</button><button id="focusToggle" class="icon-button" title="专注模式（Esc 退出）" aria-label="切换专注模式">⛶</button></div></section></div></div>
+  <section class="writing-toolbar"><div class="toolbar-left"><span class="mode-badge">✎ 写作模式</span><span class="toolbar-divider"></span><button id="fontButton" class="plain-button">默认字体 ⌄</button><button id="decreaseFont" class="icon-button" aria-label="缩小字号">A−</button><span id="fontSizeValue">20</span><button id="increaseFont" class="icon-button" aria-label="增大字号">A＋</button></div><div class="toolbar-right"><button id="zoomReset" title="Ctrl＋鼠标滚轮缩放书页；点击恢复 100%">100%</button><button id="effectsToggle" class="effect-button" aria-pressed="true">ϟ 爆震已开启</button><button id="focusToggle" class="icon-button" title="专注模式（Esc 退出）" aria-label="切换专注模式">⛶</button></div></section>
   <div class="paper-viewport" id="paperViewport"><div class="paper-layout" id="paperLayout"><section class="writing-stage">
     <div class="combo-card" id="comboCard" hidden aria-live="off"><div class="combo-label"><span class="live-spark">✦</span> WRITING COMBO</div><div class="combo-number"><span id="comboCount">0</span><span class="combo-unit">连击</span></div><div class="combo-bottom"><span id="comboRating">READY</span><span id="comboHint">灵感，即将起飞</span></div><div class="combo-track"><i id="comboProgress"></i></div></div>
 <div class="paper-content" id="paperContent">
@@ -21,7 +21,7 @@
     <div id="goalPanel" class="goal-panel" hidden><div><span id="goalText"></span><span id="goalPercent"></span></div><div class="goal-track"><i id="goalFill"></i></div></div>
     <div id="editorFrame" class="editor-frame"><pre id="highlight" aria-hidden="true"></pre><textarea id="editor" aria-label="小说正文" spellcheck="false" placeholder="故事，从这里开始。&#10;&#10;写下一句话，让灵感有回响……"></textarea><div id="caretMirror" aria-hidden="true"></div><div id="baselineMirror" aria-hidden="true"></div><div id="baselineLayer" aria-hidden="true"></div></div>
     <div class="page-footer"><span>— 把脑海里的世界，写成真实 —</span></div>
-  </div></section>
+  </div></section></div></div>
   <footer class="statusbar"><div><span class="status-dot"></span><span id="wordCount">0 字</span><span class="status-separator">/</span><span id="totalCount">全书 0 字</span></div><div><span id="cursorPosition">第 1 行，第 1 列</span><span class="status-separator">/</span><span>UTF-8</span><span class="keyboard-hint">Ctrl S 保存</span></div></footer>
 </main>
 <canvas id="particles" aria-hidden="true"></canvas><div id="toast" role="status"></div>
@@ -52,4 +52,6 @@
 <script src="assets/sensitive-words.js"></script>
 <script src="studio-core.js"></script>
 <script src="studio.js"></script>
+<script src="workspace-ui.js"></script>
+<script src="appearance.js"></script>
 </body></html>
