@@ -1,11 +1,11 @@
-# TRWriting 1.4.0
+# TRWriting 2.0.0
 
 离线网络小说写作桌面应用，支持 Windows 10 / 11（64 位）。
 
 ## 运行
 
-- **安装版**：运行 `release/TRWriting-1.4.0-x64-nsis.exe`，可选择安装位置、创建桌面快捷方式。
-- **免安装版**：运行 `release/TRWriting-1.4.0-x64-portable.exe`。
+- **安装版**：运行 `release/TRWriting-2.0.0-x64-nsis.exe`，可选择安装位置、创建桌面快捷方式。
+- **免安装版**：运行 `release/TRWriting-2.0.0-x64-portable.exe`。
 - 工作目录中的 `启动TRWriting.cmd` 优先启动桌面版。
 - `index.html` 仍可在现代 Edge / Chrome 中作为离线网页版使用。
 
@@ -49,6 +49,8 @@
 超长章节的完整高亮可能增加输入延迟，建议按实际章节拆分。
 
 ## 开发与打包
+
+仓库仅包含源码、必要资源和测试；`node_modules/`、`release/`、构建缓存、测试临时文件和本机 IDE 配置不会提交。首次使用源码请先安装 Node.js，再执行以下命令。
 
 ```powershell
 npm ci

@@ -3,3 +3,25 @@ release/
 *.log
 .smoke-test/
 .build-cache/
+
+# Local IDE and operating-system files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporary files, test output and local configuration
+coverage/
+playwright-report/
+test-results/
+*.tmp
+*.bak
+.env
+.env.*
+!.env.example
+
+# Generated preview screenshots
+TRWriting-preview.png
+TRWriting-dark-preview.png
