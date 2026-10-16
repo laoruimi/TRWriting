@@ -9,7 +9,13 @@
    if((c==="'"||c==='’')&&/[a-z0-9]/i.test(text[i-1]||'')&&/[a-z0-9]/i.test(text[i+1]||''))continue;
    if(c==='"'||c==="'"){if(stack.at(-1)?.close===c)stack.pop();else stack.push({close:c,start:i});}
    else if(pairs[c])stack.push({close:pairs[c],start:i});
-   else if(closing.has(c)){if(stack.at(-1)?.close===c)stack.pop();else add(i,i+1,'闭合符号缺少匹配的开头');}
+   else if(closing.has(c)){
+    // Recover at a matching outer delimiter so one missing inner bracket
+    // does not turn a valid closing quotation mark into another error.
+    const match=stack.findLastIndex(p=>p.close===c);
+    if(match<0)add(i,i+1,'闭合符号缺少匹配的开头');
+    else{for(const p of stack.splice(match+1))add(p.start,p.start+1,'符号未闭合，缺少 '+p.close);stack.pop();}
+   }
   }
   for(const p of stack)add(p.start,p.start+1,'符号未闭合，缺少 '+p.close);
   for(const m of text.matchAll(/([，。！？、；：,.!?;:])\1+|[ \t]+$/gm))add(m.index,m.index+m[0].length,/\s/.test(m[0])?'行尾多余空格':'重复标点');

@@ -10,6 +10,14 @@ test('diagnostics preserve offsets and distinguish yellow vocabulary from red fo
  assert.equal(C.inspect("don't stop",[]).length,0);
  assert.ok(C.inspect('正文',[],true).length);
 });
+test('closed dialogue needs no punctuation after its closing quote and recovers from inner mismatches',()=>{
+ for(const text of ['“为什么？”','“为什么？”\n“我知道了。”','他说：“为什么？”','“走！”','「为什么？」','『为什么？』','“他说‘为什么？’”'])assert.deepEqual(C.inspect(text),[],text);
+ const text='“为什么（没有回答？”',issues=C.inspect(text);
+ assert.deepEqual(issues,[{start:text.indexOf('（'),end:text.indexOf('（')+1,message:'符号未闭合，缺少 ）',kind:'error'}]);
+ assert.ok(C.inspect('“为什么？').some(i=>i.message.includes('未闭合')));
+ assert.ok(C.inspect('为什么？”').some(i=>i.message.includes('缺少匹配')));
+ assert.ok(C.inspect('“为什么？？”').some(i=>i.message==='重复标点'));
+});
 test('literal matching and replacement offsets handle regex characters and emoji',()=>{
  assert.deepEqual(C.matches('😀[x][x]','[x]'),[{start:2,end:5},{start:5,end:8}]);
  assert.equal(C.matches('AaAa','aa',false).length,2);
